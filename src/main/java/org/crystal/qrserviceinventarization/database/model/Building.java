@@ -20,6 +20,6 @@ public class Building {
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
-            mappedBy = "building") //shows that parent of Cabinet is building
+            mappedBy = "building") //shows that parent of Cabinet is building, bidirectional
     private List<Cabinet> cabinets;
 }

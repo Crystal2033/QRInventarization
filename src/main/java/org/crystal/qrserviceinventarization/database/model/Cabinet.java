@@ -10,13 +10,15 @@ import lombok.Data;
 public class Cabinet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cab_id")
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Name can not be null")
     @NotBlank
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "building_id")
     private Building building;
+
 }
