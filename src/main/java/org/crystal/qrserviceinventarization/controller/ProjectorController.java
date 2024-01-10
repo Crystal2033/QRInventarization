@@ -5,20 +5,19 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Monitor;
 import org.crystal.qrserviceinventarization.database.model.Projector;
 import org.crystal.qrserviceinventarization.service.ProjectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/projectors")
 public class ProjectorController {
     private final ProjectorService projectorService;
@@ -29,7 +28,7 @@ public class ProjectorController {
     }
 
     @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable Long cabinetId){
+    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable Long cabinetId) {
         return new ResponseEntity<>(projectorService.getProjectorsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

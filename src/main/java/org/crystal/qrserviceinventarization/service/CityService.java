@@ -6,6 +6,7 @@
 package org.crystal.qrserviceinventarization.service;
 
 import org.crystal.qrserviceinventarization.database.model.City;
+import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,11 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    public List<City> getAllCities(){
-        return cityRepository.findAll();
+    public List<City> getAllCities() {
+        var cities = cityRepository.findAll();
+        if (cities.isEmpty()) {
+            throw new ResourceNotFoundException("Cities not found");
+        }
+        return cities;
     }
 }

@@ -5,8 +5,8 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Chair;
-import org.crystal.qrserviceinventarization.service.ChairService;
+import org.crystal.qrserviceinventarization.database.model.Desk;
+import org.crystal.qrserviceinventarization.service.DeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/chairs")
-public class ChairController {
-    private final ChairService chairService;
+@RequestMapping("/api/desks")
+public class DeskController {
+    private final DeskService deskService;
 
     @Autowired
-    public ChairController(ChairService chairService) {
-        this.chairService = chairService;
+    public DeskController(DeskService deskService) {
+        this.deskService = deskService;
     }
 
     @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<Chair>> getChairsByCabinetId(@PathVariable Long cabinetId) {
-        return new ResponseEntity<>(chairService.getChairsByCabinetId(cabinetId), HttpStatus.OK);
+    public ResponseEntity<List<Desk>> getTablesByCabinetId(@PathVariable Long cabinetId) {
+        return new ResponseEntity<>(deskService.getDesksByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

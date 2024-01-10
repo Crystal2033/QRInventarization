@@ -18,8 +18,8 @@ public class Building {
     @JoinColumn(name = "branch_id") //shows that parent is branch, add column branch_id in building, bidirectional
     private Branch branch;
 
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "building") //shows that parent of Cabinet is building, bidirectional
-    private List<Cabinet> cabinets;
+//    @OneToMany(fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            mappedBy = "building") //shows that parent of Cabinet is building, bidirectional
+//    private List<Cabinet> cabinets;
 }

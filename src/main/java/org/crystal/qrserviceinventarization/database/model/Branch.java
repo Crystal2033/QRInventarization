@@ -26,8 +26,8 @@ public class Branch {
             cascade = CascadeType.ALL)
     private City city;
 
-    @OneToMany(fetch = FetchType.LAZY,
-            mappedBy = "branch",
-            cascade = CascadeType.ALL)
-    private List<Building> buildings;
+//    @OneToMany(fetch = FetchType.LAZY,
+//            mappedBy = "branch",
+//            cascade = CascadeType.ALL)
+//    private List<Building> buildings;
 }

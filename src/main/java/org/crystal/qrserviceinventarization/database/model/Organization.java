@@ -18,12 +18,12 @@ public class Organization {
     @Size(min = 5)
     private String name;
 
-    @OneToMany(
-            mappedBy = "organization",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
-    private List<Branch> branches;
+//    @OneToMany(
+//            mappedBy = "organization",
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL
+//    )
+//    private List<Branch> branches;
 
     //TODO: Add date
 }

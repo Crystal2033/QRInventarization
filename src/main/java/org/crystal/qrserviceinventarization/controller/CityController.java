@@ -5,19 +5,18 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Cabinet;
 import org.crystal.qrserviceinventarization.database.model.City;
 import org.crystal.qrserviceinventarization.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/cities")
 public class CityController {
     private final CityService cityService;
@@ -28,7 +27,7 @@ public class CityController {
     }
 
     @GetMapping
-    public ResponseEntity<List<City>> getCities(){
+    public ResponseEntity<List<City>> getCities() {
         return new ResponseEntity<>(cityService.getAllCities(), HttpStatus.OK);
     }
 }

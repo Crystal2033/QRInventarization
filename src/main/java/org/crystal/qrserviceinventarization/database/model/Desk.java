@@ -7,7 +7,8 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Table {
+@Table
+public class Desk {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -6,6 +6,7 @@
 package org.crystal.qrserviceinventarization.service;
 
 import org.crystal.qrserviceinventarization.database.model.Building;
+import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,11 @@ public class BuildingService {
         this.buildingRepository = buildingRepository;
     }
 
-    public List<Building> getBuildingsByBranchId(Long branchId){
-        return buildingRepository.getBuildingsByBranchId(branchId);
+    public List<Building> getBuildingsByBranchId(Long branchId) {
+        var buildings = buildingRepository.getBuildingsByBranchId(branchId);
+        if (buildings.isEmpty()) {
+            throw new ResourceNotFoundException(STR."Buildings with branch id = \{branchId} not found");
+        }
+        return buildings;
     }
 }
