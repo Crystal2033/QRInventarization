@@ -23,6 +23,7 @@ public class BranchService {
     }
 
     public List<Branch> getBranchesByOrgId(Long orgId){
+        return branchRepository.getBranchesByOrganizationId(orgId);
 
     }
 }

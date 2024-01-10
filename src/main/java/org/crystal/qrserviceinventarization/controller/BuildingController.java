@@ -5,10 +5,18 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
+import org.crystal.qrserviceinventarization.database.model.Branch;
+import org.crystal.qrserviceinventarization.database.model.Building;
 import org.crystal.qrserviceinventarization.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/buildings")
@@ -18,5 +26,10 @@ public class BuildingController {
     @Autowired
     public BuildingController(BuildingService buildingService) {
         this.buildingService = buildingService;
+    }
+
+    @GetMapping("/{branchId}")
+    public ResponseEntity<List<Building>> getBuildingsByBranchId(@PathVariable Long branchId){
+        return new ResponseEntity<>(buildingService.getBuildingsByBranchId(branchId), HttpStatus.OK);
     }
 }

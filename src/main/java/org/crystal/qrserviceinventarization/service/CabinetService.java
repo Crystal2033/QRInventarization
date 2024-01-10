@@ -5,9 +5,12 @@
 
 package org.crystal.qrserviceinventarization.service;
 
+import org.crystal.qrserviceinventarization.database.model.Cabinet;
 import org.crystal.qrserviceinventarization.repository.CabinetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CabinetService {
@@ -16,5 +19,9 @@ public class CabinetService {
     @Autowired
     public CabinetService(CabinetRepository cabinetRepository) {
         this.cabinetRepository = cabinetRepository;
+    }
+
+    public List<Cabinet> getCabinetsByBuildingId(Long buildingId){
+        return cabinetRepository.getCabinetsByBuildingId(buildingId);
     }
 }
