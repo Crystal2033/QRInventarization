@@ -5,9 +5,12 @@
 
 package org.crystal.qrserviceinventarization.service;
 
+import org.crystal.qrserviceinventarization.database.model.City;
 import org.crystal.qrserviceinventarization.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CityService {
@@ -16,5 +19,9 @@ public class CityService {
     @Autowired
     public CityService(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
+    }
+
+    public List<City> getAllCities(){
+        return cityRepository.findAll();
     }
 }

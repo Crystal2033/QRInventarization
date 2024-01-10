@@ -5,9 +5,12 @@
 
 package org.crystal.qrserviceinventarization.service;
 
+import org.crystal.qrserviceinventarization.database.model.Organization;
 import org.crystal.qrserviceinventarization.repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrganizationService {
@@ -17,5 +20,9 @@ public class OrganizationService {
     @Autowired
     public OrganizationService(OrganizationRepository organizationRepository) {
         this.organizationRepository = organizationRepository;
+    }
+
+    public List<Organization> getAllOrganizations(){
+        return organizationRepository.findAll();
     }
 }

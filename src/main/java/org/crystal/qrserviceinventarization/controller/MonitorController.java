@@ -5,10 +5,18 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
+import org.crystal.qrserviceinventarization.service.MonitorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/api/monitors")
 public class MonitorController {
+    private final MonitorService monitorService;
+
+    @Autowired
+    public MonitorController(MonitorService monitorService) {
+        this.monitorService = monitorService;
+    }
 }
