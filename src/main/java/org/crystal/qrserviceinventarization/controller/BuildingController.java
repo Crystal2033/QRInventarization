@@ -5,30 +5,38 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Building;
+import org.crystal.qrserviceinventarization.database.dto.BuildingDTO;
 import org.crystal.qrserviceinventarization.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/buildings")
+@RequestMapping("/api/organizations/{orgId}/branches/{branchId}/buildings")
 public class BuildingController {
     private final BuildingService buildingService;
+
 
     @Autowired
     public BuildingController(BuildingService buildingService) {
         this.buildingService = buildingService;
     }
 
-    @GetMapping("/{branchId}")
-    public ResponseEntity<List<Building>> getBuildingsByBranchId(@PathVariable Long branchId) {
-        return new ResponseEntity<>(buildingService.getBuildingsByBranchId(branchId), HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<List<BuildingDTO>> getBuildingsByBranchId(@PathVariable Long orgId,
+                                                                    @PathVariable Long branchId) {
+        var buildingsDTO = buildingService.getBuildingsByBranchId(branchId);
+        return new ResponseEntity<>(buildingsDTO, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<BuildingDTO> saveBuilding(@PathVariable Long orgId,
+                                                    @PathVariable Long branchId,
+                                                    @RequestBody BuildingDTO buildingDTO) {
+        var savedBuildingDTO = buildingService.saveBuilding(buildingDTO);
+        return new ResponseEntity<>(savedBuildingDTO, HttpStatus.CREATED);
     }
 }

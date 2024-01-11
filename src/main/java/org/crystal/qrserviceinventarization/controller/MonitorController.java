@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/monitors")
+@RequestMapping("/api/organizations/{orgId}/branches/{branchId}/buildings/{buildingId}/cabinets/{cabinetId}/monitors")
 public class MonitorController {
     private final MonitorService monitorService;
 
@@ -27,8 +27,11 @@ public class MonitorController {
         this.monitorService = monitorService;
     }
 
-    @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<Monitor>> getMonitorsByCabinetId(@PathVariable Long cabinetId) {
+    @GetMapping
+    public ResponseEntity<List<Monitor>> getMonitorsByCabinetId(@PathVariable Long orgId,
+                                                                @PathVariable Long branchId,
+                                                                @PathVariable Long buildingId,
+                                                                @PathVariable Long cabinetId) {
         return new ResponseEntity<>(monitorService.getMonitorsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

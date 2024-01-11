@@ -5,7 +5,8 @@
 
 package org.crystal.qrserviceinventarization.service;
 
-import org.crystal.qrserviceinventarization.database.model.Building;
+import org.crystal.qrserviceinventarization.database.dto.BuildingDTO;
+import org.crystal.qrserviceinventarization.database.mapper.BuildingMapper;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,28 @@ import java.util.List;
 public class BuildingService {
     private final BuildingRepository buildingRepository;
 
+    private final BuildingMapper buildingMapper;
+
     @Autowired
-    public BuildingService(BuildingRepository buildingRepository) {
+    public BuildingService(BuildingRepository buildingRepository, BuildingMapper buildingMapper) {
         this.buildingRepository = buildingRepository;
+        this.buildingMapper = buildingMapper;
     }
 
-    public List<Building> getBuildingsByBranchId(Long branchId) {
+    public List<BuildingDTO> getBuildingsByBranchId(Long branchId) {
         var buildings = buildingRepository.getBuildingsByBranchId(branchId);
+
         if (buildings.isEmpty()) {
             throw new ResourceNotFoundException(STR."Buildings with branch id = \{branchId} not found");
         }
-        return buildings;
+        return buildings
+                .stream()
+                .map(buildingMapper::toDto)
+                .toList();
+    }
+
+    public BuildingDTO saveBuilding(BuildingDTO buildingDTO) {
+        var savedBuilding = buildingRepository.save(buildingMapper.toEntity(buildingDTO));
+        return buildingMapper.toDto(savedBuilding);
     }
 }

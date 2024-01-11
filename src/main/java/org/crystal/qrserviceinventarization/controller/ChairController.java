@@ -5,20 +5,17 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Chair;
+import org.crystal.qrserviceinventarization.database.dto.ChairDTO;
 import org.crystal.qrserviceinventarization.service.ChairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/chairs")
+@RequestMapping("/api/organizations/{orgId}/branches/{branchId}/buildings/{buildingId}/cabinets/{cabinetId}/chairs")
 public class ChairController {
     private final ChairService chairService;
 
@@ -27,8 +24,21 @@ public class ChairController {
         this.chairService = chairService;
     }
 
-    @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<Chair>> getChairsByCabinetId(@PathVariable Long cabinetId) {
+    @GetMapping
+    public ResponseEntity<List<ChairDTO>> getChairsByCabinetId(@PathVariable Long orgId,
+                                                               @PathVariable Long branchId,
+                                                               @PathVariable Long buildingId,
+                                                               @PathVariable Long cabinetId) {
         return new ResponseEntity<>(chairService.getChairsByCabinetId(cabinetId), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ChairDTO> saveChair(@PathVariable Long orgId,
+                                              @PathVariable Long branchId,
+                                              @PathVariable Long buildingId,
+                                              @PathVariable Long cabinetId,
+                                              @RequestBody ChairDTO chair) {
+        return new ResponseEntity<>(chairService.saveChair(chair, cabinetId), HttpStatus.CREATED);
+
     }
 }

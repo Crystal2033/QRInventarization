@@ -5,20 +5,21 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Organization;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.crystal.qrserviceinventarization.database.dto.OrganizationDTO;
+import org.crystal.qrserviceinventarization.database.mapper.OrganizationMapper;
 import org.crystal.qrserviceinventarization.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/organizations")
 public class OrganizationController {
+
     private final OrganizationService organizationService;
 
     @Autowired
@@ -27,7 +28,19 @@ public class OrganizationController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Organization>> getAllOrganizations() {
-        return new ResponseEntity<>(organizationService.getAllOrganizations(), HttpStatus.OK);
+    public ResponseEntity<List<OrganizationDTO>> getAllOrganizations() {
+        var organizationsDTO = organizationService.getAllOrganizations();
+        return new ResponseEntity<>(organizationsDTO, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<OrganizationDTO> saveOrganization(@RequestBody OrganizationDTO organizationDTO) {
+        var savedOrganizationDTO = organizationService.saveOrganization(organizationDTO);
+        return new ResponseEntity<>(savedOrganizationDTO, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{orgId}")
+    public void deleteOrganization(@PathVariable Long orgId) {
+        organizationService.deleteOrganizationById(orgId);
     }
 }

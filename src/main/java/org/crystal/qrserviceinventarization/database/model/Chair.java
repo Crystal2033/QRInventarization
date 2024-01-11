@@ -1,28 +1,20 @@
 package org.crystal.qrserviceinventarization.database.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-public class Chair {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+public class Chair extends AbstractInventarizedEntity {
 
-    private byte[] image;
-
-    @NotNull(message = "Name can not be null")
-    @NotBlank
-    private String name;
-
-    @NotNull(message = "Inventory number can not be null")
-    private String inventoryNumber;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cabinet_id")
-    private Cabinet cabinet;
-
+    @Builder
+    public Chair(Long id, byte[] image, String inventoryNumber, String name, Cabinet cabinet) {
+        super(id, image, inventoryNumber, name, cabinet);
+    }
 }

@@ -5,6 +5,7 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
+import org.apache.catalina.mapper.Mapper;
 import org.crystal.qrserviceinventarization.database.model.Keyboard;
 import org.crystal.qrserviceinventarization.service.KeyboardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/keyboards")
+@RequestMapping("/api/organizations/{orgId}/branches/{branchId}/buildings/{buildingId}/cabinets/{cabinetId}/keyboards")
 public class KeyboardController {
     private final KeyboardService keyboardService;
 
@@ -27,8 +28,11 @@ public class KeyboardController {
         this.keyboardService = keyboardService;
     }
 
-    @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<Keyboard>> getChairsByCabinetId(@PathVariable Long cabinetId){
+    @GetMapping
+    public ResponseEntity<List<Keyboard>> getChairsByCabinetId(@PathVariable Long orgId,
+                                                               @PathVariable Long branchId,
+                                                               @PathVariable Long buildingId,
+                                                               @PathVariable Long cabinetId){
         return new ResponseEntity<>(keyboardService.getKeyboardsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/projectors")
+@RequestMapping("/api/organizations/{orgId}/branches/{branchId}/buildings/{buildingId}/cabinets/{cabinetId}/projectors")
 public class ProjectorController {
     private final ProjectorService projectorService;
 
@@ -27,8 +27,11 @@ public class ProjectorController {
         this.projectorService = projectorService;
     }
 
-    @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable Long cabinetId) {
+    @GetMapping
+    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable Long orgId,
+                                                                    @PathVariable Long branchId,
+                                                                    @PathVariable Long buildingId,
+                                                                    @PathVariable Long cabinetId) {
         return new ResponseEntity<>(projectorService.getProjectorsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

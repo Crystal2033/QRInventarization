@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/system_units")
+@RequestMapping("/api/organizations/{orgId}/branches/{branchId}/buildings/{buildingId}/cabinets/{cabinetId}/system_units")
 public class SystemUnitController {
     private final SystemUnitService systemUnitService;
 
@@ -27,8 +27,11 @@ public class SystemUnitController {
         this.systemUnitService = systemUnitService;
     }
 
-    @GetMapping("/{cabinetId}")
-    public ResponseEntity<List<SystemUnit>> getSystemUnitsByCabinetId(@PathVariable Long cabinetId) {
+    @GetMapping
+    public ResponseEntity<List<SystemUnit>> getSystemUnitsByCabinetId(@PathVariable Long orgId,
+                                                                      @PathVariable Long branchId,
+                                                                      @PathVariable Long buildingId,
+                                                                      @PathVariable Long cabinetId) {
         return new ResponseEntity<>(systemUnitService.getSystemUnitsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }
