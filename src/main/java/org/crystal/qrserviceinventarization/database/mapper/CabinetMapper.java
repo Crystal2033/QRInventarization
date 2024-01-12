@@ -15,21 +15,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class CabinetMapper extends AbstractMapper<Cabinet, CabinetDTO> {
 
-    private final EntityDtoMapper mapper;
     private final BuildingRepository buildingRepository;
 
     CabinetMapper(EntityDtoMapper mapper, BuildingRepository buildingRepository) {
         super(Cabinet.class, CabinetDTO.class);
-        this.mapper = mapper;
         this.buildingRepository = buildingRepository;
     }
 
     @PostConstruct
     public void setupMapper() {
-        mapper.getModelMapper().createTypeMap(Cabinet.class, CabinetDTO.class)
+        mapper.createTypeMap(Cabinet.class, CabinetDTO.class)
                 .addMappings(m -> m.skip(CabinetDTO::setBuildingId)).setPostConverter(toDtoConverter());
 
-        mapper.getModelMapper().createTypeMap(CabinetDTO.class, Cabinet.class)
+        mapper.createTypeMap(CabinetDTO.class, Cabinet.class)
                 .addMappings(m -> m.skip(Cabinet::setBuilding)).setPostConverter(toEntityConverter());
     }
 

@@ -6,33 +6,32 @@
 package org.crystal.qrserviceinventarization.database.mapper;
 
 import jakarta.annotation.PostConstruct;
-import lombok.NoArgsConstructor;
 import org.crystal.qrserviceinventarization.database.dto.BranchDTO;
 import org.crystal.qrserviceinventarization.database.model.Branch;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.CityRepository;
 import org.crystal.qrserviceinventarization.repository.OrganizationRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BranchMapper extends AbstractMapper<Branch, BranchDTO> {
 
-    private final EntityDtoMapper mapper;
+    //private final ModelMapper mapper;
     private final CityRepository cityRepository;
     private final OrganizationRepository organizationRepository;
 
     @Autowired
-    BranchMapper(EntityDtoMapper mapper, CityRepository cityRepository, OrganizationRepository organizationRepository) {
+    BranchMapper(CityRepository cityRepository, OrganizationRepository organizationRepository) {
         super(Branch.class, BranchDTO.class);
-        this.mapper = mapper;
         this.cityRepository = cityRepository;
         this.organizationRepository = organizationRepository;
     }
 
     @PostConstruct
     public void setupMapper() {
-        mapper.getModelMapper().createTypeMap(Branch.class, BranchDTO.class)
+        mapper.createTypeMap(Branch.class, BranchDTO.class)
                 .addMappings(
                         m -> {
                             m.skip(BranchDTO::setCityId);
@@ -40,14 +39,12 @@ public class BranchMapper extends AbstractMapper<Branch, BranchDTO> {
                             m.skip(BranchDTO::setOrganizationId);
                         }).setPostConverter(toDtoConverter());
 
-        mapper.getModelMapper().createTypeMap(BranchDTO.class, Branch.class)
+        mapper.createTypeMap(BranchDTO.class, Branch.class)
                 .addMappings(
                         m -> {
                             m.skip(Branch::setCity);
                             m.skip(Branch::setOrganization);
-
                         }).setPostConverter(toEntityConverter());
-
     }
 
     @Override

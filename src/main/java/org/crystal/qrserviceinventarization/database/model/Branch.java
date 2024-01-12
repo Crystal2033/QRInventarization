@@ -27,11 +27,11 @@ public class Branch {
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
-    @OneToOne(fetch = FetchType.LAZY,
+    @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private City city;
 

@@ -16,23 +16,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class BuildingMapper extends AbstractMapper<Building, BuildingDTO> {
 
-    private final EntityDtoMapper mapper;
     private final BranchRepository branchRepository;
 
     @Autowired
-    BuildingMapper(EntityDtoMapper mapper, BranchRepository branchRepository) {
+    BuildingMapper(BranchRepository branchRepository) {
         super(Building.class, BuildingDTO.class);
-        this.mapper = mapper;
         this.branchRepository = branchRepository;
     }
 
     @PostConstruct
     public void setupMapper() {
-        mapper.getModelMapper().createTypeMap(Building.class, BuildingDTO.class)
+        mapper.createTypeMap(Building.class, BuildingDTO.class)
                 .addMappings(
                         m -> m.skip(BuildingDTO::setBranchId)).setPostConverter(toDtoConverter());
 
-        mapper.getModelMapper().createTypeMap(BuildingDTO.class, Building.class)
+        mapper.createTypeMap(BuildingDTO.class, Building.class)
                 .addMappings(
                         m -> m.skip(Building::setBranch)).setPostConverter(toEntityConverter());
     }

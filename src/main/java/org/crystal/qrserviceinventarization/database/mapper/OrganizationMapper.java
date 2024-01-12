@@ -13,12 +13,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrganizationMapper extends AbstractMapper<Organization, OrganizationDTO> {
-    private final EntityDtoMapper mapper;
 
-    @Autowired
-    public OrganizationMapper(EntityDtoMapper mapper) {
+    public OrganizationMapper() {
         super(Organization.class, OrganizationDTO.class);
-        this.mapper = mapper;
     }
 
 }

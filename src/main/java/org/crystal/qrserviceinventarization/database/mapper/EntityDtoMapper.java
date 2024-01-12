@@ -21,7 +21,7 @@ public class EntityDtoMapper {
                 .setMatchingStrategy(MatchingStrategies.STRICT)
                 .setFieldMatchingEnabled(true)
                 .setSkipNullEnabled(true)
-                .setFieldAccessLevel(PRIVATE);
+                .setPreferNestedProperties(false);
         return mapper;
     }
 }

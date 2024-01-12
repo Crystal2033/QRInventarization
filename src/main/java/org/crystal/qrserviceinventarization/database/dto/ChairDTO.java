@@ -10,11 +10,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.crystal.qrserviceinventarization.database.model.Cabinet;
 import org.crystal.qrserviceinventarization.database.model.Chair;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ChairDTO { //it`s more convenient to transfer this class without cabinet, I will get cabinet by id in method
     private Long id;
 

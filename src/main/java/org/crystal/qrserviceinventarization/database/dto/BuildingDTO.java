@@ -7,11 +7,13 @@ package org.crystal.qrserviceinventarization.database.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.crystal.qrserviceinventarization.database.model.Branch;
 import org.crystal.qrserviceinventarization.database.model.Building;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BuildingDTO {
     private Long id;
 

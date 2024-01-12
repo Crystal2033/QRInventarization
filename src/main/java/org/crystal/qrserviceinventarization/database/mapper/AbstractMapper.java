@@ -14,12 +14,11 @@ import java.util.Objects;
 public abstract class AbstractMapper<E, D> implements Mapper<E, D> {
 
     @Autowired
-    private ModelMapper mapper;
+    protected ModelMapper mapper;
 
-    private final Class<E> entityClass;
-    private final Class<D> dtoClass;
+    private Class<E> entityClass;
+    private Class<D> dtoClass;
 
-    @Autowired
     protected AbstractMapper(Class<E> entityClass, Class<D> dtoClass) {
         this.entityClass = entityClass;
         this.dtoClass = dtoClass;
@@ -60,8 +59,10 @@ public abstract class AbstractMapper<E, D> implements Mapper<E, D> {
     }
 
     void mapSpecificFieldsEntityToDto(E source, D destination) {
+        System.out.println("Hey mapSpecificFieldsDtoToEntity");
     }
 
     void mapSpecificFieldsDtoToEntity(D source, E destination) {
+        System.out.println("Hey mapSpecificFieldsDtoToEntity");
     }
 }
