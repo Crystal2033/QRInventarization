@@ -5,17 +5,12 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.apache.catalina.mapper.Mapper;
 import org.crystal.qrserviceinventarization.database.dto.KeyboardDTO;
-import org.crystal.qrserviceinventarization.database.model.Keyboard;
 import org.crystal.qrserviceinventarization.service.KeyboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,10 +25,50 @@ public class KeyboardController {
     }
 
     @GetMapping
-    public ResponseEntity<List<KeyboardDTO>> getChairsByCabinetId(@PathVariable Long orgId,
-                                                                  @PathVariable Long branchId,
-                                                                  @PathVariable Long buildingId,
-                                                                  @PathVariable Long cabinetId){
+    public ResponseEntity<List<KeyboardDTO>> getKeyboardsByCabinetId(@PathVariable(required = false) Long orgId,
+                                                                     @PathVariable(required = false) Long branchId,
+                                                                     @PathVariable(required = false) Long buildingId,
+                                                                     @PathVariable Long cabinetId) {
         return new ResponseEntity<>(keyboardService.getKeyboardsByCabinetId(cabinetId), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<KeyboardDTO> saveKeyboard(@PathVariable(required = false) Long orgId,
+                                                    @PathVariable(required = false) Long branchId,
+                                                    @PathVariable(required = false) Long buildingId,
+                                                    @PathVariable(required = false) Long cabinetId,
+                                                    @RequestBody KeyboardDTO keyboardDTO) {
+        return new ResponseEntity<>(keyboardService.saveKeyboard(keyboardDTO), HttpStatus.CREATED);
+
+    }
+
+    @PutMapping
+    public ResponseEntity<KeyboardDTO> updateKeyboard(@PathVariable(required = false) Long orgId,
+                                                      @PathVariable(required = false) Long branchId,
+                                                      @PathVariable(required = false) Long buildingId,
+                                                      @PathVariable(required = false) Long cabinetId,
+                                                      @RequestBody KeyboardDTO keyboardDTO) {
+        return new ResponseEntity<>(keyboardService.saveKeyboard(keyboardDTO), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/{keyboardId}")
+    public ResponseEntity<Void> deleteKeyboardById(@PathVariable(required = false) Long orgId,
+                                                   @PathVariable(required = false) Long branchId,
+                                                   @PathVariable(required = false) Long buildingId,
+                                                   @PathVariable(required = false) Long cabinetId,
+                                                   @PathVariable Long keyboardId) {
+        keyboardService.deleteKeyboardById(keyboardId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @GetMapping("/{keyboardId}")
+    public ResponseEntity<KeyboardDTO> getKeyboardById(@PathVariable(required = false) Long orgId,
+                                                       @PathVariable(required = false) Long branchId,
+                                                       @PathVariable(required = false) Long buildingId,
+                                                       @PathVariable(required = false) Long cabinetId,
+                                                       @PathVariable Long keyboardId) {
+        return new ResponseEntity<>(keyboardService.getKeyboardById(keyboardId), HttpStatus.OK);
     }
 }
