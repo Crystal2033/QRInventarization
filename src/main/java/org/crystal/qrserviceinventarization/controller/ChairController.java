@@ -53,7 +53,7 @@ public class ChairController {
     }
 
     @DeleteMapping("/{chairId}")
-    public ResponseEntity<Void> deleteChair(@PathVariable(required = false) Long orgId,
+    public ResponseEntity<Void> deleteChairById(@PathVariable(required = false) Long orgId,
                                             @PathVariable(required = false) Long branchId,
                                             @PathVariable(required = false) Long buildingId,
                                             @PathVariable(required = false) Long cabinetId,
