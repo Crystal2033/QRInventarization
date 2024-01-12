@@ -10,10 +10,7 @@ import org.crystal.qrserviceinventarization.service.ProjectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,49 @@ public class ProjectorController {
     public ResponseEntity<List<ProjectorDTO>> getProjectorsByCabinetId(@PathVariable(required = false) Long orgId,
                                                                        @PathVariable(required = false) Long branchId,
                                                                        @PathVariable(required = false) Long buildingId,
-                                                                       @PathVariable(required = false) Long cabinetId) {
+                                                                       @PathVariable Long cabinetId) {
         return new ResponseEntity<>(projectorService.getProjectorsByCabinetId(cabinetId), HttpStatus.OK);
+    }
+
+    @PostMapping
+
+
+    public ResponseEntity<ProjectorDTO> saveProjector(@PathVariable(required = false) Long orgId,
+                                                      @PathVariable(required = false) Long branchId,
+                                                      @PathVariable(required = false) Long buildingId,
+                                                      @PathVariable(required = false) Long cabinetId,
+                                                      @RequestBody ProjectorDTO projectorDTO) {
+        return new ResponseEntity<>(projectorService.saveProjector(projectorDTO), HttpStatus.CREATED);
+
+    }
+
+    @PutMapping
+    public ResponseEntity<ProjectorDTO> updateProjector(@PathVariable(required = false) Long orgId,
+                                                        @PathVariable(required = false) Long branchId,
+                                                        @PathVariable(required = false) Long buildingId,
+                                                        @PathVariable(required = false) Long cabinetId,
+                                                        @RequestBody ProjectorDTO projectorDTO) {
+        return new ResponseEntity<>(projectorService.saveProjector(projectorDTO), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/{projectorId}")
+    public ResponseEntity<Void> deleteProjectorById(@PathVariable(required = false) Long orgId,
+                                                    @PathVariable(required = false) Long branchId,
+                                                    @PathVariable(required = false) Long buildingId,
+                                                    @PathVariable(required = false) Long cabinetId,
+                                                    @PathVariable Long projectorId) {
+        projectorService.deleteProjectorById(projectorId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @GetMapping("/{projectorId}")
+    public ResponseEntity<ProjectorDTO> getProjectorById(@PathVariable(required = false) Long orgId,
+                                                         @PathVariable(required = false) Long branchId,
+                                                         @PathVariable(required = false) Long buildingId,
+                                                         @PathVariable(required = false) Long cabinetId,
+                                                         @PathVariable Long projectorId) {
+        return new ResponseEntity<>(projectorService.getProjectorById(projectorId), HttpStatus.OK);
     }
 }
