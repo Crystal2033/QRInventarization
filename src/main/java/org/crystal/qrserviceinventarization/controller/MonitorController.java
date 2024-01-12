@@ -5,6 +5,7 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
+import org.crystal.qrserviceinventarization.database.dto.MonitorDTO;
 import org.crystal.qrserviceinventarization.database.model.Monitor;
 import org.crystal.qrserviceinventarization.service.MonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ public class MonitorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Monitor>> getMonitorsByCabinetId(@PathVariable Long orgId,
-                                                                @PathVariable Long branchId,
-                                                                @PathVariable Long buildingId,
-                                                                @PathVariable Long cabinetId) {
+    public ResponseEntity<List<MonitorDTO>> getMonitorsByCabinetId(@PathVariable Long orgId,
+                                                                   @PathVariable Long branchId,
+                                                                   @PathVariable Long buildingId,
+                                                                   @PathVariable Long cabinetId) {
         return new ResponseEntity<>(monitorService.getMonitorsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

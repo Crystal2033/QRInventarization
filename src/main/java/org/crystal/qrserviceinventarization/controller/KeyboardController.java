@@ -6,6 +6,7 @@
 package org.crystal.qrserviceinventarization.controller;
 
 import org.apache.catalina.mapper.Mapper;
+import org.crystal.qrserviceinventarization.database.dto.KeyboardDTO;
 import org.crystal.qrserviceinventarization.database.model.Keyboard;
 import org.crystal.qrserviceinventarization.service.KeyboardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,10 @@ public class KeyboardController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Keyboard>> getChairsByCabinetId(@PathVariable Long orgId,
-                                                               @PathVariable Long branchId,
-                                                               @PathVariable Long buildingId,
-                                                               @PathVariable Long cabinetId){
+    public ResponseEntity<List<KeyboardDTO>> getChairsByCabinetId(@PathVariable Long orgId,
+                                                                  @PathVariable Long branchId,
+                                                                  @PathVariable Long buildingId,
+                                                                  @PathVariable Long cabinetId){
         return new ResponseEntity<>(keyboardService.getKeyboardsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }
