@@ -5,6 +5,7 @@
 
 package org.crystal.qrserviceinventarization.service;
 
+import org.crystal.qrserviceinventarization.database.dto.DeskDTO;
 import org.crystal.qrserviceinventarization.database.model.Desk;
 import org.crystal.qrserviceinventarization.repository.DeskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class DeskService {
         this.deskRepository = deskRepository;
     }
 
-    public List<Desk> getDesksByCabinetId(Long cabinetId) {
-        return deskRepository.findDesksByCabinetId(cabinetId);
-    }
+//    public List<DeskDTO> getDesksByCabinetId(Long cabinetId) {
+//
+//    }
 }

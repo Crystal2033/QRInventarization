@@ -27,11 +27,11 @@ public class DeskController {
         this.deskService = deskService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Desk>> getTablesByCabinetId(@PathVariable Long orgId,
-                                                           @PathVariable Long branchId,
-                                                           @PathVariable Long buildingId,
-                                                           @PathVariable Long cabinetId) {
-        return new ResponseEntity<>(deskService.getDesksByCabinetId(cabinetId), HttpStatus.OK);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<Desk>> getTablesByCabinetId(@PathVariable Long orgId,
+//                                                           @PathVariable Long branchId,
+//                                                           @PathVariable Long buildingId,
+//                                                           @PathVariable Long cabinetId) {
+//        return new ResponseEntity<>(deskService.getDesksByCabinetId(cabinetId), HttpStatus.OK);
+//    }
 }

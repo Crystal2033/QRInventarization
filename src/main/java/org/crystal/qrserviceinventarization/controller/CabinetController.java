@@ -25,8 +25,8 @@ public class CabinetController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CabinetDTO>> getCabinetsBuildingId(@PathVariable Long orgId,
-                                                                  @PathVariable Long branchId,
+    public ResponseEntity<List<CabinetDTO>> getCabinetsBuildingId(@PathVariable(required = false) Long orgId,
+                                                                  @PathVariable(required = false) Long branchId,
                                                                   @PathVariable Long buildingId) {
         return new ResponseEntity<>(cabinetService.getCabinetsByBuildingId(buildingId), HttpStatus.OK);
     }

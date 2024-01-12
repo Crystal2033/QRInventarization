@@ -28,10 +28,10 @@ public class ProjectorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable Long orgId,
-                                                                    @PathVariable Long branchId,
-                                                                    @PathVariable Long buildingId,
-                                                                    @PathVariable Long cabinetId) {
+    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable(required = false) Long orgId,
+                                                                    @PathVariable(required = false) Long branchId,
+                                                                    @PathVariable(required = false) Long buildingId,
+                                                                    @PathVariable(required = false) Long cabinetId) {
         return new ResponseEntity<>(projectorService.getProjectorsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

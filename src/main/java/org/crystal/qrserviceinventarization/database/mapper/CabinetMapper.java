@@ -13,7 +13,7 @@ import org.crystal.qrserviceinventarization.repository.BuildingRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CabinetMapper extends AbstractMapper<Cabinet, CabinetDTO> {
+public final class CabinetMapper extends AbstractMapper<Cabinet, CabinetDTO> {
 
     private final BuildingRepository buildingRepository;
 
@@ -32,12 +32,12 @@ public class CabinetMapper extends AbstractMapper<Cabinet, CabinetDTO> {
     }
 
     @Override
-    void mapSpecificFieldsEntityToDto(Cabinet source, CabinetDTO destination) {
+    protected void mapSpecificFieldsEntityToDto(Cabinet source, CabinetDTO destination) {
         destination.setBuildingId(source.getBuilding().getId());
     }
 
     @Override
-    void mapSpecificFieldsDtoToEntity(CabinetDTO source, Cabinet destination) {
+    protected void mapSpecificFieldsDtoToEntity(CabinetDTO source, Cabinet destination) {
         destination.setBuilding(buildingRepository.findById(source.getBuildingId())
                 .orElseThrow(() -> new ResourceNotFoundException(STR."Building with id = \{source.getBuildingId()} not found")));
     }

@@ -32,7 +32,7 @@ public class BranchController {
     }
 
     @PostMapping
-    public ResponseEntity<BranchDTO> saveBranch(@PathVariable Long orgId, @RequestBody BranchDTO branchDTO) {
+    public ResponseEntity<BranchDTO> saveBranch(@PathVariable(required = false) Long orgId, @RequestBody BranchDTO branchDTO) {
         var savedBranchDTO = branchService.saveBranch(branchDTO);
         return new ResponseEntity<>(savedBranchDTO, HttpStatus.CREATED);
     }

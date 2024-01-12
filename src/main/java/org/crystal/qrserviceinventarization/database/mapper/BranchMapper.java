@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BranchMapper extends AbstractMapper<Branch, BranchDTO> {
+public final class BranchMapper extends AbstractMapper<Branch, BranchDTO> {
 
     //private final ModelMapper mapper;
     private final CityRepository cityRepository;
@@ -48,14 +48,14 @@ public class BranchMapper extends AbstractMapper<Branch, BranchDTO> {
     }
 
     @Override
-    void mapSpecificFieldsEntityToDto(Branch source, BranchDTO destination) {
+    protected void mapSpecificFieldsEntityToDto(Branch source, BranchDTO destination) {
         destination.setCityId(source.getCity().getId());
         destination.setCityName(source.getCity().getName());
         destination.setOrganizationId(source.getOrganization().getId());
     }
 
     @Override
-    void mapSpecificFieldsDtoToEntity(BranchDTO source, Branch destination) {
+    protected void mapSpecificFieldsDtoToEntity(BranchDTO source, Branch destination) {
         destination.setCity(
                 cityRepository.findById(source.getCityId())
                         .orElseThrow(() -> new ResourceNotFoundException(STR."City with id = \{source.getCityId()} not found")));

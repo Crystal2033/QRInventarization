@@ -5,8 +5,7 @@
 
 package org.crystal.qrserviceinventarization.database.dto;
 
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class KeyboardDTO {
+public class KeyboardDTO extends AbstractInventarizedDTO {
+
 }

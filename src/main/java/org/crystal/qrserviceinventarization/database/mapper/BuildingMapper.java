@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BuildingMapper extends AbstractMapper<Building, BuildingDTO> {
+public final class BuildingMapper extends AbstractMapper<Building, BuildingDTO> {
 
     private final BranchRepository branchRepository;
 
@@ -36,12 +36,12 @@ public class BuildingMapper extends AbstractMapper<Building, BuildingDTO> {
     }
 
     @Override
-    void mapSpecificFieldsEntityToDto(Building source, BuildingDTO destination) {
+    protected void mapSpecificFieldsEntityToDto(Building source, BuildingDTO destination) {
         destination.setBranchId(source.getBranch().getId());
     }
 
     @Override
-    void mapSpecificFieldsDtoToEntity(BuildingDTO source, Building destination) {
+    protected void mapSpecificFieldsDtoToEntity(BuildingDTO source, Building destination) {
         destination.setBranch(branchRepository.findById(source.getBranchId())
                 .orElseThrow(() -> new ResourceNotFoundException(STR."Branch with id = \{source.getBranchId()} not found")));
     }

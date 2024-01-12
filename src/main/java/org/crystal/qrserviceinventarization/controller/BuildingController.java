@@ -26,15 +26,15 @@ public class BuildingController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BuildingDTO>> getBuildingsByBranchId(@PathVariable Long orgId,
+    public ResponseEntity<List<BuildingDTO>> getBuildingsByBranchId(@PathVariable(required = false) Long orgId,
                                                                     @PathVariable Long branchId) {
         var buildingsDTO = buildingService.getBuildingsByBranchId(branchId);
         return new ResponseEntity<>(buildingsDTO, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<BuildingDTO> saveBuilding(@PathVariable Long orgId,
-                                                    @PathVariable Long branchId,
+    public ResponseEntity<BuildingDTO> saveBuilding(@PathVariable(required = false) Long orgId,
+                                                    @PathVariable(required = false) Long branchId,
                                                     @RequestBody BuildingDTO buildingDTO) {
         var savedBuildingDTO = buildingService.saveBuilding(buildingDTO);
         return new ResponseEntity<>(savedBuildingDTO, HttpStatus.CREATED);

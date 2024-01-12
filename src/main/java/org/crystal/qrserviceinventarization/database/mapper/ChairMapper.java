@@ -7,19 +7,19 @@ package org.crystal.qrserviceinventarization.database.mapper;
 
 import jakarta.annotation.PostConstruct;
 import org.crystal.qrserviceinventarization.database.dto.ChairDTO;
+import org.crystal.qrserviceinventarization.database.dto.AbstractInventarizedObjectMapper;
 import org.crystal.qrserviceinventarization.database.model.Chair;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.CabinetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ChairMapper extends AbstractMapper<Chair, ChairDTO> {
+public final class ChairMapper extends AbstractInventarizedObjectMapper<Chair, ChairDTO> {
 
-    private final CabinetRepository cabinetRepository;
-
+    @Autowired
     ChairMapper(CabinetRepository cabinetRepository) {
-        super(Chair.class, ChairDTO.class);
-        this.cabinetRepository = cabinetRepository;
+        super(Chair.class, ChairDTO.class, cabinetRepository);
     }
 
     @PostConstruct
@@ -29,17 +29,5 @@ public class ChairMapper extends AbstractMapper<Chair, ChairDTO> {
 
         mapper.createTypeMap(ChairDTO.class, Chair.class)
                 .addMappings(m -> m.skip(Chair::setCabinet)).setPostConverter(toEntityConverter());
-    }
-
-    @Override
-    void mapSpecificFieldsEntityToDto(Chair source, ChairDTO destination) {
-        destination.setCabinetId(source.getCabinet().getId());
-    }
-
-    @Override
-    void mapSpecificFieldsDtoToEntity(ChairDTO source, Chair destination) {
-        destination.setCabinet(
-                cabinetRepository.findById(source.getCabinetId()).orElseThrow(
-                        () -> new ResourceNotFoundException(STR."Cabinet with id = \{source.getCabinetId()} not found")));
     }
 }

@@ -25,17 +25,17 @@ public class ChairController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ChairDTO>> getChairsByCabinetId(@PathVariable Long orgId,
-                                                               @PathVariable Long branchId,
-                                                               @PathVariable Long buildingId,
+    public ResponseEntity<List<ChairDTO>> getChairsByCabinetId(@PathVariable(required = false) Long orgId,
+                                                               @PathVariable(required = false) Long branchId,
+                                                               @PathVariable(required = false) Long buildingId,
                                                                @PathVariable Long cabinetId) {
         return new ResponseEntity<>(chairService.getChairsByCabinetId(cabinetId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ChairDTO> saveChair(@PathVariable Long orgId,
-                                              @PathVariable Long branchId,
-                                              @PathVariable Long buildingId,
+    public ResponseEntity<ChairDTO> saveChair(@PathVariable(required = false) Long orgId,
+                                              @PathVariable(required = false) Long branchId,
+                                              @PathVariable(required = false) Long buildingId,
                                               @PathVariable Long cabinetId,
                                               @RequestBody ChairDTO chair) {
         return new ResponseEntity<>(chairService.saveChair(chair, cabinetId), HttpStatus.CREATED);
