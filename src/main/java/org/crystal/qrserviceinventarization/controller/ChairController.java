@@ -58,7 +58,7 @@ public class ChairController {
                                             @PathVariable(required = false) Long buildingId,
                                             @PathVariable(required = false) Long cabinetId,
                                             @PathVariable Long chairId) {
-        chairService.deleteChair(chairId);
+        chairService.deleteChairById(chairId);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }

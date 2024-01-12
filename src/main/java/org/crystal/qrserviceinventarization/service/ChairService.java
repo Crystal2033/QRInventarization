@@ -8,7 +8,6 @@ package org.crystal.qrserviceinventarization.service;
 import org.crystal.qrserviceinventarization.database.dto.ChairDTO;
 import org.crystal.qrserviceinventarization.database.mapper.ChairMapper;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
-import org.crystal.qrserviceinventarization.repository.CabinetRepository;
 import org.crystal.qrserviceinventarization.repository.ChairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,7 @@ public class ChairService {
         return chairMapper.toDto(chair);
     }
 
-    public void deleteChair(Long chairId) {
+    public void deleteChairById(Long chairId) {
         var chair = chairRepository.findById(chairId).orElseThrow(
                 () -> new ResourceNotFoundException(STR."Chair with id= \{chairId} not found")
         );

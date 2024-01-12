@@ -49,7 +49,7 @@ public class DeskService {
         return deskMapper.toDto(desk);
     }
 
-    public void deleteChair(Long deskId) {
+    public void deleteDeskById(Long deskId) {
         var desk = deskRepository.findById(deskId).orElseThrow(
                 () -> new ResourceNotFoundException(STR."Desk with id= \{deskId} not found")
         );
