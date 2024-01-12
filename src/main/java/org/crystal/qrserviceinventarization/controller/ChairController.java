@@ -54,10 +54,10 @@ public class ChairController {
 
     @DeleteMapping("/{chairId}")
     public ResponseEntity<Void> deleteChairById(@PathVariable(required = false) Long orgId,
-                                            @PathVariable(required = false) Long branchId,
-                                            @PathVariable(required = false) Long buildingId,
-                                            @PathVariable(required = false) Long cabinetId,
-                                            @PathVariable Long chairId) {
+                                                @PathVariable(required = false) Long branchId,
+                                                @PathVariable(required = false) Long buildingId,
+                                                @PathVariable(required = false) Long cabinetId,
+                                                @PathVariable Long chairId) {
         chairService.deleteChairById(chairId);
         return new ResponseEntity<>(HttpStatus.OK);
 

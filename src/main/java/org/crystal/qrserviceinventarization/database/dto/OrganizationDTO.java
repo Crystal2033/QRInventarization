@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.crystal.qrserviceinventarization.database.model.Organization;
 
 @Data
 @AllArgsConstructor
@@ -20,7 +19,4 @@ public class OrganizationDTO { //for future if we don`t want to share secret dat
     @NotNull
     private String name;
 
-//    public Organization toOrganization(){
-//        return new Organization(id, name);
-//    }
 }

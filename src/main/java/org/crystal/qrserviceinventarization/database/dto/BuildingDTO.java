@@ -8,8 +8,6 @@ package org.crystal.qrserviceinventarization.database.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.crystal.qrserviceinventarization.database.model.Branch;
-import org.crystal.qrserviceinventarization.database.model.Building;
 
 @Data
 @AllArgsConstructor
@@ -20,13 +18,5 @@ public class BuildingDTO {
     private String address;
 
     private Long branchId;
-
-//    public Building toBuilding(Branch branch) {
-//        return new Building(
-//                id,
-//                address,
-//                branch
-//        );
-//    }
 
 }

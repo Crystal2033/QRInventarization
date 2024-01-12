@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import lombok.*;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = false)
-@AllArgsConstructor
-@Builder
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
 public class Projector extends AbstractInventarizedEntity {
+    @Builder
+    public Projector(Long id, byte[] image, String inventoryNumber, String name, Cabinet cabinet) {
+        super(id, image, inventoryNumber, name, cabinet);
+    }
 }

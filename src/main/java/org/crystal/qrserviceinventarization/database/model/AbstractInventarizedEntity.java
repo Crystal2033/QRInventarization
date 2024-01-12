@@ -8,8 +8,10 @@ package org.crystal.qrserviceinventarization.database.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 
 import java.sql.Types;
@@ -39,8 +41,6 @@ public abstract class AbstractInventarizedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cabinet_id")
     private Cabinet cabinet;
-
-
 
 
 //    @Column(name = "created", updatable = false)

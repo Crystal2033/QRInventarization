@@ -1,15 +1,19 @@
 package org.crystal.qrserviceinventarization.database.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@Data
-@Builder
-@EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
 public class Keyboard extends AbstractInventarizedEntity {
+    @Builder
+    public Keyboard(Long id, byte[] image, String inventoryNumber, String name, Cabinet cabinet) {
+        super(id, image, inventoryNumber, name, cabinet);
+    }
 
 }

@@ -7,11 +7,8 @@ package org.crystal.qrserviceinventarization.database.mapper;
 
 import jakarta.annotation.PostConstruct;
 import org.crystal.qrserviceinventarization.database.dto.AbstractInventarizedObjectMapper;
-import org.crystal.qrserviceinventarization.database.dto.ProjectorDTO;
 import org.crystal.qrserviceinventarization.database.dto.SystemUnitDTO;
-import org.crystal.qrserviceinventarization.database.model.Projector;
 import org.crystal.qrserviceinventarization.database.model.SystemUnit;
-import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.CabinetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

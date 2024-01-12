@@ -3,15 +3,10 @@ package org.crystal.qrserviceinventarization.database.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.crystal.qrserviceinventarization.database.dto.BranchDTO;
-import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -35,13 +30,6 @@ public class Branch {
             cascade = CascadeType.ALL)
     private City city;
 
-//    public BranchDTO toBranchDTO(){
-//        return new BranchDTO(
-//                id,
-//                name,
-//                city.getName()
-//        );
-//    }
 //    @OneToMany(fetch = FetchType.LAZY,
 //            mappedBy = "branch",
 //            cascade = CascadeType.ALL)

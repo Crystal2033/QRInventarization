@@ -5,11 +5,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = false)
-@AllArgsConstructor
-@Builder
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
 public class Monitor extends AbstractInventarizedEntity {
-
+    @Builder
+    public Monitor(Long id, byte[] image, String inventoryNumber, String name, Cabinet cabinet) {
+        super(id, image, inventoryNumber, name, cabinet);
+    }
 }

@@ -9,9 +9,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.crystal.qrserviceinventarization.database.model.Branch;
-import org.crystal.qrserviceinventarization.database.model.City;
-import org.crystal.qrserviceinventarization.database.model.Organization;
 
 @Data
 @AllArgsConstructor
@@ -28,13 +25,4 @@ public class BranchDTO {
     private Long organizationId;
 
     private Long cityId;
-
-//    public Branch toBranch(Organization organization, City city) {
-//        return new Branch(
-//                id,
-//                name,
-//                organization,
-//                city
-//        );
-//    }
 }

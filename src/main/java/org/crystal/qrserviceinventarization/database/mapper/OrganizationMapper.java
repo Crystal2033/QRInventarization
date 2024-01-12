@@ -5,10 +5,8 @@
 
 package org.crystal.qrserviceinventarization.database.mapper;
 
-import jakarta.annotation.PostConstruct;
 import org.crystal.qrserviceinventarization.database.dto.OrganizationDTO;
 import org.crystal.qrserviceinventarization.database.model.Organization;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -59,10 +59,8 @@ public abstract class AbstractMapper<E, D> implements Mapper<E, D> {
     }
 
     protected void mapSpecificFieldsEntityToDto(E source, D destination) {
-        System.out.println("Hey mapSpecificFieldsDtoToEntity");
     }
 
     protected void mapSpecificFieldsDtoToEntity(D source, E destination) {
-        System.out.println("Hey mapSpecificFieldsDtoToEntity");
     }
 }
