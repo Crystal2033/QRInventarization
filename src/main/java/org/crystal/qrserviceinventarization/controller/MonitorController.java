@@ -6,15 +6,11 @@
 package org.crystal.qrserviceinventarization.controller;
 
 import org.crystal.qrserviceinventarization.database.dto.MonitorDTO;
-import org.crystal.qrserviceinventarization.database.model.Monitor;
 import org.crystal.qrserviceinventarization.service.MonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,10 +25,50 @@ public class MonitorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MonitorDTO>> getMonitorsByCabinetId(@PathVariable Long orgId,
-                                                                   @PathVariable Long branchId,
-                                                                   @PathVariable Long buildingId,
+    public ResponseEntity<List<MonitorDTO>> getMonitorsByCabinetId(@PathVariable(required = false) Long orgId,
+                                                                   @PathVariable(required = false) Long branchId,
+                                                                   @PathVariable(required = false) Long buildingId,
                                                                    @PathVariable Long cabinetId) {
         return new ResponseEntity<>(monitorService.getMonitorsByCabinetId(cabinetId), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<MonitorDTO> saveMonitor(@PathVariable(required = false) Long orgId,
+                                                  @PathVariable(required = false) Long branchId,
+                                                  @PathVariable(required = false) Long buildingId,
+                                                  @PathVariable(required = false) Long cabinetId,
+                                                  @RequestBody MonitorDTO monitorDTO) {
+        return new ResponseEntity<>(monitorService.saveMonitor(monitorDTO), HttpStatus.CREATED);
+
+    }
+
+    @PutMapping
+    public ResponseEntity<MonitorDTO> updateMonitor(@PathVariable(required = false) Long orgId,
+                                                    @PathVariable(required = false) Long branchId,
+                                                    @PathVariable(required = false) Long buildingId,
+                                                    @PathVariable(required = false) Long cabinetId,
+                                                    @RequestBody MonitorDTO monitorDTO) {
+        return new ResponseEntity<>(monitorService.saveMonitor(monitorDTO), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/{monitorId}")
+    public ResponseEntity<Void> deleteMonitorById(@PathVariable(required = false) Long orgId,
+                                                  @PathVariable(required = false) Long branchId,
+                                                  @PathVariable(required = false) Long buildingId,
+                                                  @PathVariable(required = false) Long cabinetId,
+                                                  @PathVariable Long monitorId) {
+        monitorService.deleteMonitorById(monitorId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @GetMapping("/{monitorId}")
+    public ResponseEntity<MonitorDTO> getMonitorById(@PathVariable(required = false) Long orgId,
+                                                     @PathVariable(required = false) Long branchId,
+                                                     @PathVariable(required = false) Long buildingId,
+                                                     @PathVariable(required = false) Long cabinetId,
+                                                     @PathVariable Long monitorId) {
+        return new ResponseEntity<>(monitorService.getMonitorById(monitorId), HttpStatus.OK);
     }
 }
