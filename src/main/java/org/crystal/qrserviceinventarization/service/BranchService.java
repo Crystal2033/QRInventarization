@@ -34,7 +34,6 @@ public class BranchService {
         if (branches.isEmpty()) {
             throw new ResourceNotFoundException(STR."Branches with organization id = \{orgId} does not exist.");
         }
-        var test = branchMapper.toDto(branches.get(0));
         return branches
                 .stream()
                 .map(branchMapper::toDto)
