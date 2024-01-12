@@ -30,6 +30,4 @@ public class ProjectorMapper extends AbstractInventarizedObjectMapper<Projector,
         mapper.createTypeMap(ProjectorDTO.class, Projector.class)
                 .addMappings(m -> m.skip(Projector::setCabinet)).setPostConverter(toEntityConverter());
     }
-
-
 }

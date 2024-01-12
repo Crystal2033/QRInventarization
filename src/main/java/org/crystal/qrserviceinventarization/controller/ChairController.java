@@ -36,9 +36,39 @@ public class ChairController {
     public ResponseEntity<ChairDTO> saveChair(@PathVariable(required = false) Long orgId,
                                               @PathVariable(required = false) Long branchId,
                                               @PathVariable(required = false) Long buildingId,
-                                              @PathVariable Long cabinetId,
+                                              @PathVariable(required = false) Long cabinetId,
                                               @RequestBody ChairDTO chair) {
-        return new ResponseEntity<>(chairService.saveChair(chair, cabinetId), HttpStatus.CREATED);
+        return new ResponseEntity<>(chairService.saveChair(chair), HttpStatus.CREATED);
 
+    }
+
+    @PutMapping
+    public ResponseEntity<ChairDTO> updateChair(@PathVariable(required = false) Long orgId,
+                                                @PathVariable(required = false) Long branchId,
+                                                @PathVariable(required = false) Long buildingId,
+                                                @PathVariable(required = false) Long cabinetId,
+                                                @RequestBody ChairDTO chair) {
+        return new ResponseEntity<>(chairService.saveChair(chair), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/{chairId}")
+    public ResponseEntity<Void> deleteChair(@PathVariable(required = false) Long orgId,
+                                            @PathVariable(required = false) Long branchId,
+                                            @PathVariable(required = false) Long buildingId,
+                                            @PathVariable(required = false) Long cabinetId,
+                                            @PathVariable Long chairId) {
+        chairService.deleteChair(chairId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @GetMapping("/{chairId}")
+    public ResponseEntity<ChairDTO> getChairById(@PathVariable(required = false) Long orgId,
+                                                 @PathVariable(required = false) Long branchId,
+                                                 @PathVariable(required = false) Long buildingId,
+                                                 @PathVariable(required = false) Long cabinetId,
+                                                 @PathVariable Long chairId) {
+        return new ResponseEntity<>(chairService.getChairById(chairId), HttpStatus.OK);
     }
 }

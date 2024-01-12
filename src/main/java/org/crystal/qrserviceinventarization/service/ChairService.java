@@ -7,7 +7,6 @@ package org.crystal.qrserviceinventarization.service;
 
 import org.crystal.qrserviceinventarization.database.dto.ChairDTO;
 import org.crystal.qrserviceinventarization.database.mapper.ChairMapper;
-import org.crystal.qrserviceinventarization.database.model.Chair;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.CabinetRepository;
 import org.crystal.qrserviceinventarization.repository.ChairRepository;
@@ -19,14 +18,12 @@ import java.util.List;
 @Service
 public class ChairService {
     private final ChairRepository chairRepository;
-    private final CabinetRepository cabinetRepository;
 
     private final ChairMapper chairMapper;
 
     @Autowired
-    public ChairService(ChairRepository chairRepository, CabinetRepository cabinetRepository, ChairMapper chairMapper) {
+    public ChairService(ChairRepository chairRepository, ChairMapper chairMapper) {
         this.chairRepository = chairRepository;
-        this.cabinetRepository = cabinetRepository;
         this.chairMapper = chairMapper;
     }
 
@@ -41,8 +38,23 @@ public class ChairService {
                 .toList();
     }
 
-    public ChairDTO saveChair(ChairDTO chairDTO, Long cabinetId) {
+    public ChairDTO saveChair(ChairDTO chairDTO) {
         var savedChair = chairRepository.save(chairMapper.toEntity(chairDTO));
         return chairMapper.toDto(savedChair);
+    }
+
+    public ChairDTO getChairById(Long chairId) {
+        var chair = chairRepository.findById(chairId).orElseThrow(
+                () -> new ResourceNotFoundException(STR."Chair with id= \{chairId} not found")
+        );
+        return chairMapper.toDto(chair);
+    }
+
+    public void deleteChair(Long chairId) {
+        var chair = chairRepository.findById(chairId).orElseThrow(
+                () -> new ResourceNotFoundException(STR."Chair with id= \{chairId} not found")
+        );
+
+        chairRepository.delete(chair);
     }
 }
