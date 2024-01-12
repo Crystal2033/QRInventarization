@@ -5,7 +5,7 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
-import org.crystal.qrserviceinventarization.database.model.Projector;
+import org.crystal.qrserviceinventarization.database.dto.ProjectorDTO;
 import org.crystal.qrserviceinventarization.service.ProjectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,10 +28,10 @@ public class ProjectorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Projector>> getProjectorsByCabinetId(@PathVariable(required = false) Long orgId,
-                                                                    @PathVariable(required = false) Long branchId,
-                                                                    @PathVariable(required = false) Long buildingId,
-                                                                    @PathVariable(required = false) Long cabinetId) {
+    public ResponseEntity<List<ProjectorDTO>> getProjectorsByCabinetId(@PathVariable(required = false) Long orgId,
+                                                                       @PathVariable(required = false) Long branchId,
+                                                                       @PathVariable(required = false) Long buildingId,
+                                                                       @PathVariable(required = false) Long cabinetId) {
         return new ResponseEntity<>(projectorService.getProjectorsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }

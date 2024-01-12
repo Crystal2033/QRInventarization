@@ -5,6 +5,7 @@
 
 package org.crystal.qrserviceinventarization.controller;
 
+import org.crystal.qrserviceinventarization.database.dto.SystemUnitDTO;
 import org.crystal.qrserviceinventarization.database.model.SystemUnit;
 import org.crystal.qrserviceinventarization.service.SystemUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ public class SystemUnitController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SystemUnit>> getSystemUnitsByCabinetId(@PathVariable Long orgId,
-                                                                      @PathVariable Long branchId,
-                                                                      @PathVariable Long buildingId,
-                                                                      @PathVariable Long cabinetId) {
+    public ResponseEntity<List<SystemUnitDTO>> getSystemUnitsByCabinetId(@PathVariable Long orgId,
+                                                                         @PathVariable Long branchId,
+                                                                         @PathVariable Long buildingId,
+                                                                         @PathVariable Long cabinetId) {
         return new ResponseEntity<>(systemUnitService.getSystemUnitsByCabinetId(cabinetId), HttpStatus.OK);
     }
 }
