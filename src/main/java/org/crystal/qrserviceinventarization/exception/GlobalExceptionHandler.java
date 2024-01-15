@@ -31,4 +31,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorInfo, HttpStatusCode.valueOf(errorInfo.getStatus()));
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorInfo> catchWrongDataException(WrongDataException e) {
+        ErrorInfo errorInfo = new ErrorInfo(HttpStatus.FORBIDDEN.value(), e.getMessage());
+        return new ResponseEntity<>(errorInfo, HttpStatusCode.valueOf(errorInfo.getStatus()));
+    }
+
 }

@@ -6,7 +6,7 @@
 package org.crystal.qrserviceinventarization.controller;
 
 import org.crystal.qrserviceinventarization.database.dto.KeyboardDTO;
-import org.crystal.qrserviceinventarization.service.KeyboardService;
+import org.crystal.qrserviceinventarization.service.impl.KeyboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

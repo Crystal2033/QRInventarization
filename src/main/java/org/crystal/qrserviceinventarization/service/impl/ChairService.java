@@ -3,7 +3,7 @@
  * Date: 10.01.2024
  */
 
-package org.crystal.qrserviceinventarization.service;
+package org.crystal.qrserviceinventarization.service.impl;
 
 import org.crystal.qrserviceinventarization.database.dto.ChairDTO;
 import org.crystal.qrserviceinventarization.database.mapper.ChairMapper;

@@ -6,7 +6,7 @@
 package org.crystal.qrserviceinventarization.controller;
 
 import org.crystal.qrserviceinventarization.database.model.City;
-import org.crystal.qrserviceinventarization.service.CityService;
+import org.crystal.qrserviceinventarization.service.impl.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

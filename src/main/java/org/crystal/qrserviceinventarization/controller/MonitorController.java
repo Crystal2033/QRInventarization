@@ -6,7 +6,7 @@
 package org.crystal.qrserviceinventarization.controller;
 
 import org.crystal.qrserviceinventarization.database.dto.MonitorDTO;
-import org.crystal.qrserviceinventarization.service.MonitorService;
+import org.crystal.qrserviceinventarization.service.impl.MonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -7,7 +7,7 @@ package org.crystal.qrserviceinventarization.controller;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.crystal.qrserviceinventarization.database.dto.BranchDTO;
-import org.crystal.qrserviceinventarization.service.BranchService;
+import org.crystal.qrserviceinventarization.service.impl.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

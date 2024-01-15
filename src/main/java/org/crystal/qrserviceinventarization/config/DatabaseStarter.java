@@ -23,17 +23,20 @@ public class DatabaseStarter implements CommandLineRunner {
 
     private final CityRepository cityRepository;
 
+    private final UserRepository userRepository;
+
     public DatabaseStarter(OrganizationRepository organizationRepository,
                            BranchRepository branchRepository,
                            BuildingRepository buildingRepository,
                            CabinetRepository cabinetRepository,
-                           ChairRepository chairRepository, CityRepository cityRepository) {
+                           ChairRepository chairRepository, CityRepository cityRepository, UserRepository userRepository) {
         this.organizationRepository = organizationRepository;
         this.branchRepository = branchRepository;
         this.buildingRepository = buildingRepository;
         this.cabinetRepository = cabinetRepository;
         this.chairRepository = chairRepository;
         this.cityRepository = cityRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -83,6 +86,17 @@ public class DatabaseStarter implements CommandLineRunner {
                 .build();
 
         chair = chairRepository.save(chair);
+
+//        User user = User.builder()
+//                .login("1")
+//                .password("2")
+//                .firstName("Paul")
+//                .secondName("Kulikov")
+//                .organization(organization)
+//                .id(0L)
+//                .build();
+
+
 
 
     }

@@ -3,7 +3,7 @@
  * Date: 10.01.2024
  */
 
-package org.crystal.qrserviceinventarization.service;
+package org.crystal.qrserviceinventarization.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.crystal.qrserviceinventarization.database.dto.BranchDTO;

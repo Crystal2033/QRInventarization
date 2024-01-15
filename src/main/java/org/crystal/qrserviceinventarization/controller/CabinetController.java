@@ -6,7 +6,7 @@
 package org.crystal.qrserviceinventarization.controller;
 
 import org.crystal.qrserviceinventarization.database.dto.CabinetDTO;
-import org.crystal.qrserviceinventarization.service.CabinetService;
+import org.crystal.qrserviceinventarization.service.impl.CabinetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
