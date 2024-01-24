@@ -38,6 +38,14 @@ public class BuildingService {
                 .toList();
     }
 
+    public BuildingDTO getBuildingById(Long buildingId) {
+        var building = buildingRepository.findById(buildingId);
+
+        return buildingMapper.toDto(
+                buildingRepository.save(building.orElseThrow(()
+                        -> new ResourceNotFoundException(STR."Building with id=\{buildingId} can not be found"))));
+    }
+
     public BuildingDTO saveBuilding(BuildingDTO buildingDTO) {
         var savedBuilding = buildingRepository.save(buildingMapper.toEntity(buildingDTO));
         return buildingMapper.toDto(savedBuilding);

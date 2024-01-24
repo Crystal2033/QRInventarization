@@ -31,6 +31,15 @@ public class CabinetController {
         return new ResponseEntity<>(cabinetService.getCabinetsByBuildingId(buildingId), HttpStatus.OK);
     }
 
+    @GetMapping("/{cabinetId}")
+    public ResponseEntity<CabinetDTO> getCabinetById(@PathVariable(required = false) Long orgId,
+                                                     @PathVariable(required = false) Long branchId,
+                                                     @PathVariable(required = false) Long buildingId,
+                                                     @PathVariable Long cabinetId) {
+        var cabinetDTO = cabinetService.getCabinetById(cabinetId);
+        return new ResponseEntity<>(cabinetDTO, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<CabinetDTO> saveCabinet(@PathVariable Long orgId,
                                                   @PathVariable Long branchId,

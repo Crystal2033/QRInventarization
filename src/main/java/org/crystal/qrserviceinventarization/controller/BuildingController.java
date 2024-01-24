@@ -32,6 +32,14 @@ public class BuildingController {
         return new ResponseEntity<>(buildingsDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/{buildingId}")
+    public ResponseEntity<BuildingDTO> getBuildingById(@PathVariable(required = false) Long orgId,
+                                                       @PathVariable(required = false) Long branchId,
+                                                       @PathVariable Long buildingId) {
+        var buildingDTO = buildingService.getBuildingById(buildingId);
+        return new ResponseEntity<>(buildingDTO, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<BuildingDTO> saveBuilding(@PathVariable(required = false) Long orgId,
                                                     @PathVariable(required = false) Long branchId,

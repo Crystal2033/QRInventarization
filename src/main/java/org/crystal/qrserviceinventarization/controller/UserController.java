@@ -11,10 +11,7 @@ import org.crystal.qrserviceinventarization.database.dto.UserRegisterDTO;
 import org.crystal.qrserviceinventarization.service.impl.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/users")
@@ -25,13 +22,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/auth")
-    public ResponseEntity<UserDTO> tryLogin(UserLoginDTO userLoginDTO) {
+    @PostMapping("/auth")
+    public ResponseEntity<UserDTO> tryLogin(@RequestBody UserLoginDTO userLoginDTO) {
         return new ResponseEntity<>(userService.tryLogin(userLoginDTO), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(UserRegisterDTO userRegisterDTO) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserRegisterDTO userRegisterDTO) {
         return new ResponseEntity<>(userService.saveUser(userRegisterDTO), HttpStatus.OK);
     }
 }

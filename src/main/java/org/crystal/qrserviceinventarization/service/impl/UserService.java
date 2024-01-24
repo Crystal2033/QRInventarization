@@ -10,6 +10,7 @@ import org.crystal.qrserviceinventarization.database.dto.UserLoginDTO;
 import org.crystal.qrserviceinventarization.database.dto.UserRegisterDTO;
 import org.crystal.qrserviceinventarization.database.mapper.UserMapper;
 import org.crystal.qrserviceinventarization.database.mapper.UserRegisterMapper;
+import org.crystal.qrserviceinventarization.exception.AlreadyExistsException;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.exception.WrongDataException;
 import org.crystal.qrserviceinventarization.repository.UserRepository;
@@ -29,6 +30,11 @@ public class UserService {
 
 
     public UserDTO saveUser(UserRegisterDTO userRegisterDTO) {
+        userRepository.findUserByLogin(userRegisterDTO.getLogin()).ifPresent(
+                (existingUser) -> {
+                    throw new AlreadyExistsException(STR."User with login = \{userRegisterDTO.getLogin()} already exists.");
+                }
+        );
         var savedUser = userRepository.save(userRegisterMapper.toEntity(userRegisterDTO));
         return userMapper.toDto(savedUser);
     }

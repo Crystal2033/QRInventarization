@@ -5,16 +5,13 @@
 
 package org.crystal.qrserviceinventarization.service.impl;
 
-import jakarta.transaction.Transactional;
 import org.crystal.qrserviceinventarization.database.dto.BranchDTO;
 import org.crystal.qrserviceinventarization.database.mapper.BranchMapper;
 import org.crystal.qrserviceinventarization.exception.ResourceNotFoundException;
 import org.crystal.qrserviceinventarization.repository.BranchRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.beans.Transient;
 import java.util.List;
 
 @Service
@@ -26,6 +23,14 @@ public class BranchService {
     public BranchService(BranchRepository branchRepository, BranchMapper branchMapper) {
         this.branchRepository = branchRepository;
         this.branchMapper = branchMapper;
+    }
+
+    public BranchDTO getBranchById(Long branchId) {
+        var branch = branchRepository.findById(branchId);
+
+        return branchMapper.toDto(
+                branchRepository.save(branch.orElseThrow(()
+                        -> new ResourceNotFoundException(STR."Branch with id=\{branchId} can not be found"))));
     }
 
     public List<BranchDTO> getBranchesByOrgId(Long orgId) {

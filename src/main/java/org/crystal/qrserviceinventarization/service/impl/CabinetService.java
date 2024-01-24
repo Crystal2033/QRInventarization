@@ -37,6 +37,14 @@ public class CabinetService {
                 .toList();
     }
 
+    public CabinetDTO getCabinetById(Long cabinetId) {
+        var cabinet = cabinetRepository.findById(cabinetId);
+
+        return cabinetMapper.toDto(
+                cabinetRepository.save(cabinet.orElseThrow(()
+                        -> new ResourceNotFoundException(STR."Cabinet with id=\{cabinetId} can not be found"))));
+    }
+
     public CabinetDTO saveCabinet(CabinetDTO cabinetDTO) {
         var savedCabinet = cabinetRepository.save(cabinetMapper.toEntity(cabinetDTO));
         return cabinetMapper.toDto(savedCabinet);

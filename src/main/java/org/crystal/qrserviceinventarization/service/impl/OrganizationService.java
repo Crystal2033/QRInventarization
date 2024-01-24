@@ -37,12 +37,17 @@ public class OrganizationService {
                 .toList();
     }
 
-    public OrganizationDTO saveOrganization(OrganizationDTO organizationDTO) {
-        var organization = organizationRepository.findById(organizationDTO.getId());
+    public OrganizationDTO getOrganizationById(Long orgId) {
+        var organization = organizationRepository.findById(orgId);
 
         return organizationMapper.toDto(
                 organizationRepository.save(organization.orElseThrow(()
-                        -> new ResourceNotFoundException("Organization can not be found"))));
+                        -> new ResourceNotFoundException(STR."Organization with id=\{orgId} can not be found"))));
+    }
+
+    public OrganizationDTO saveOrganization(OrganizationDTO organizationDTO) {
+        var savedOrganization = organizationRepository.save(organizationMapper.toEntity(organizationDTO));
+        return organizationMapper.toDto(savedOrganization);
     }
 
     public void deleteOrganizationById(Long orgId) {

@@ -25,6 +25,13 @@ public class BranchController {
         this.branchService = branchService;
     }
 
+    @GetMapping("/{branchId}")
+    public ResponseEntity<BranchDTO> getBranchById(@PathVariable(required = false) Long orgId,
+                                                   @PathVariable Long branchId) {
+        var branchDTO = branchService.getBranchById(branchId);
+        return new ResponseEntity<>(branchDTO, HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<BranchDTO>> getBranchesByOrganizationId(@PathVariable Long orgId) {
         var branchesDTO = branchService.getBranchesByOrgId(orgId);

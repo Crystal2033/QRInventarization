@@ -26,6 +26,12 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
+    @GetMapping("/{orgId}")
+    public ResponseEntity<OrganizationDTO> getOrganizationById(@PathVariable Long orgId) {
+        var organizationDTO = organizationService.getOrganizationById(orgId);
+        return new ResponseEntity<>(organizationDTO, HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<OrganizationDTO>> getAllOrganizations() {
         var organizationsDTO = organizationService.getAllOrganizations();

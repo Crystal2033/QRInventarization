@@ -87,14 +87,16 @@ public class DatabaseStarter implements CommandLineRunner {
 
         chair = chairRepository.save(chair);
 
-//        User user = User.builder()
-//                .login("1")
-//                .password("2")
-//                .firstName("Paul")
-//                .secondName("Kulikov")
-//                .organization(organization)
-//                .id(0L)
-//                .build();
+        User user = User.builder()
+                .login("1")
+                .password("2")
+                .firstName("Paul")
+                .secondName("Kulikov")
+                .organization(organization)
+                .id(0L)
+                .build();
+
+        userRepository.save(user);
 
 
 
